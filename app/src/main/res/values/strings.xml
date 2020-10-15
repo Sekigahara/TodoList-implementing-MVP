@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">RemakeTodoList</string>
+    <string name="add_grouplist_title">Your todo list Title</string>
+    <string name="update_groulist_title">Update list Title</string>
+    <string name="add_grouplist_description">Insert a Description</string>
+    <string name="update_grouplist_description">Insert a Description</string>
+    <string name="add_list_title">Your todo list Title</string>
+    <string name="add_list_description">Insert a Description</string>
+    <string name="add_list_date">Pick the Date</string>
+    <string name="update_list_title">Update todo list Title</string>
+    <string name="update_list_description">Update a Description</string>
+    <string name="update_list_date">Update the Date</string>
+</resources>
