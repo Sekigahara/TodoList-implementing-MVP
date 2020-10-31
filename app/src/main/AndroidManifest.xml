@@ -9,18 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/MyTheme">
-        <activity android:name=".dashboard.DashboardActivity">
+        <activity android:name=".module.login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".list.ListActivity"></activity>
-        <activity android:name=".edit_add_grouplist.AddGroupListActivity"></activity>
-        <activity android:name=".edit_add_grouplist.EditGroupListActivity"></activity>
-        <activity android:name=".edit_add_list.AddListActivity"></activity>
-        <activity android:name=".edit_add_list.EditListActivity"></activity>
+        <activity android:name=".module.dashboard.DashboardActivity"></activity>
+        <activity android:name=".module.list.ListActivity"></activity>
+        <activity android:name=".module.edit_add_grouplist.AddGroupListActivity"></activity>
+        <activity android:name=".module.edit_add_grouplist.EditGroupListActivity"></activity>
+        <activity android:name=".module.edit_add_list.AddListActivity"></activity>
+        <activity android:name=".module.edit_add_list.EditListActivity"></activity>
     </application>
 
 </manifest>

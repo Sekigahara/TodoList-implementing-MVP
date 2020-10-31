@@ -25,7 +25,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="140dp"
             android:layout_marginTop="10dp"
-            android:text="Choose" />
+            android:text="Choose"
+            android:textColor="?attr/colorForText"/>
 
         <TextView
             android:id="@+id/tvTitle"
@@ -35,9 +36,10 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="30dp"
             android:text="Title"
-            android:textColor="@color/colorTextBlack"
+            android:textColor="?attr/colorForText"
             android:textSize="24sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            />
 
         <EditText
             android:id="@+id/etTitle"
@@ -47,7 +49,8 @@
             android:layout_marginTop="10dp"
             android:layout_marginRight="20dp"
             android:hint="@string/add_grouplist_title"
-            android:inputType="text|numberDecimal" />
+            android:inputType="text|numberDecimal"
+            android:textColor="?attr/colorForText"/>
 
         <TextView
             android:id="@+id/tvDescription"
@@ -56,7 +59,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="30dp"
             android:text="Description"
-            android:textColor="@color/colorTextBlack"
+            android:textColor="?attr/colorForText"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -68,13 +71,15 @@
             android:layout_marginTop="10dp"
             android:layout_marginRight="20dp"
             android:hint="@string/add_grouplist_description"
-            android:inputType="text|numberDecimal" />
+            android:inputType="text|numberDecimal"
+            android:textColor="?attr/colorForText" />
 
         <Button
             android:id="@+id/btCreateUpdate"
             android:layout_width="127dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="130dp"
-            android:layout_marginTop="40dp" />
+            android:layout_marginTop="40dp"
+            android:textColor="?attr/colorForText" />
     </LinearLayout>
 </RelativeLayout>
