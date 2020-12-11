@@ -15,12 +15,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".module.dashboard.DashboardActivity"></activity>
         <activity android:name=".module.list.ListActivity"></activity>
-        <activity android:name=".module.edit_add_grouplist.AddGroupListActivity"></activity>
-        <activity android:name=".module.edit_add_grouplist.EditGroupListActivity"></activity>
         <activity android:name=".module.edit_add_list.AddListActivity"></activity>
         <activity android:name=".module.edit_add_list.EditListActivity"></activity>
     </application>
-
 </manifest>

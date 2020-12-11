@@ -11,8 +11,8 @@ import java.util.ArrayList;
 public interface ListContract {
     interface View extends BaseView<ListContract.Presenter> {
         void gotoNewTask();
-        void showData(Schedule schedule);
         void setId(String id);
+        void gotoLogin();
     }
 
     interface Presenter extends BasePresenter {

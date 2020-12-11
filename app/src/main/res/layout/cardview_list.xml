@@ -51,14 +51,6 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/btEdit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:text="edit"
-                    android:textColor="?attr/colorForText" />
-
-                <Button
                     android:id="@+id/btDelete"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

@@ -10,7 +10,9 @@ import android.widget.EditText;
 
 import com.example.remaketodolist.R;
 import com.example.remaketodolist.base.BaseFragment;
+import com.example.remaketodolist.data.local.ScheduleTableHandler;
 import com.example.remaketodolist.data.model.Schedule;
+import com.example.remaketodolist.data.source.ScheduleSessionRepository;
 import com.example.remaketodolist.module.list.ListActivity;
 
 public class EditListFragment extends BaseFragment<EditListActivity, EditListContract.Presenter> implements EditListContract.View{
@@ -23,7 +25,7 @@ public class EditListFragment extends BaseFragment<EditListActivity, EditListCon
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         super.onCreateView(inflater, container, savedInstanceState);
         fragmentView = inflater.inflate(R.layout.fragment_add_update_list,container,false);
-        mPresenter = new EditListPresenter(this);
+        mPresenter = new EditListPresenter(this, new ScheduleSessionRepository(getActivity()), new ScheduleTableHandler(getActivity()));
         mPresenter.start();
 
         etTitle = fragmentView.findViewById(R.id.etTitle);
@@ -32,18 +34,21 @@ public class EditListFragment extends BaseFragment<EditListActivity, EditListCon
         btCreateUpdate = fragmentView.findViewById(R.id.btCreateUpdate);
 
         btCreateUpdate.setText("Update");
+
+        btCreateUpdate.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                String title = etTitle.getText().toString();
+                String description = etDescription.getText().toString();
+                String date = etDate.getText().toString();
+                mPresenter.saveData(new Schedule(id, title, description, date));
+            }
+        });
         setTitle("Edit Your List");
 
         mPresenter.loadData(this.id);
 
         return fragmentView;
-    }
-
-
-    public void setBtSaveClick(){
-        String title = etTitle.getText().toString();
-        String description = etDescription.getText().toString();
-        mPresenter.saveData(title,description);
     }
 
     @Override
@@ -62,6 +67,7 @@ public class EditListFragment extends BaseFragment<EditListActivity, EditListCon
     public void showData(Schedule schedule) {
         this.etTitle.setText(schedule.getTitle());
         this.etDescription.setText(schedule.getDescription());
+        this.etDate.setText(schedule.getDate());
     }
 
     @Override

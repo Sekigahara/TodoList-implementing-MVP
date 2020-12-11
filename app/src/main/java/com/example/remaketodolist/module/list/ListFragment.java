@@ -6,18 +6,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.remaketodolist.R;
 import com.example.remaketodolist.base.BaseFragment;
+import com.example.remaketodolist.data.local.ScheduleTableHandler;
 import com.example.remaketodolist.data.model.Schedule;
-import com.example.remaketodolist.module.dashboard.DashboardActivity;
 import com.example.remaketodolist.module.edit_add_list.AddListActivity;
 import com.example.remaketodolist.module.edit_add_list.EditListActivity;
+import com.example.remaketodolist.module.login.LoginActivity;
 import com.example.remaketodolist.utils.RecycleViewAdapterList;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -37,7 +36,7 @@ public class ListFragment extends BaseFragment<ListActivity, ListContract.Presen
     public android.view.View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         super.onCreateView(inflater, container, savedInstanceState);
         fragmentView = inflater.inflate(R.layout.fragment_list, container, false);
-        mPresenter = new ListPresenter(this);
+        mPresenter = new ListPresenter(this, new ScheduleTableHandler(getActivity()));
         mPresenter.start();
 
         mRecyclerView = fragmentView.findViewById(R.id.RecycleViewAdapterList);
@@ -46,7 +45,7 @@ public class ListFragment extends BaseFragment<ListActivity, ListContract.Presen
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         final ArrayList<Schedule> data = mPresenter.getDataSet();
-        mAdapter = new RecycleViewAdapterList(data);
+        mAdapter = new RecycleViewAdapterList(data, new ScheduleTableHandler(getActivity()), activity);
         mRecyclerView.setAdapter(mAdapter);
 
         setTitle("Schedule");
@@ -61,7 +60,6 @@ public class ListFragment extends BaseFragment<ListActivity, ListContract.Presen
         ((RecycleViewAdapterList) mAdapter).setOnItemClickListener(new RecycleViewAdapterList.MyClickListener(){
             public void onItemClick(int position, View view){
                 String id = data.get(position).getId();
-                Log.d("Schedule Activity", ">>>>>" + position);
                 editTask(id);
             }
         });
@@ -71,6 +69,11 @@ public class ListFragment extends BaseFragment<ListActivity, ListContract.Presen
 
     public void gotoNewTask(){
         Intent intent = new Intent(activity, AddListActivity.class);
+        startActivity(intent);
+    }
+
+    public void gotoLogin(){
+        Intent intent = new Intent(activity, LoginActivity.class);
         startActivity(intent);
     }
 

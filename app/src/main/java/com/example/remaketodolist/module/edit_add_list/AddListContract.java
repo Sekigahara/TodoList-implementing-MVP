@@ -4,13 +4,15 @@ import android.content.Intent;
 
 import com.example.remaketodolist.base.BasePresenter;
 import com.example.remaketodolist.base.BaseView;
+import com.example.remaketodolist.data.model.Schedule;
 
 public interface AddListContract {
     interface View extends BaseView<AddListContract.Presenter> {
-        void startingActivity(Intent intent);
+        void startingNewActivity(Intent intent);
+        void returnToList();
     }
 
     interface Presenter extends BasePresenter {
-
+        void commitSchedule(Schedule schedule);
     }
 }

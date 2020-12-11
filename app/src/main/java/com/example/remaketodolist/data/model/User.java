@@ -6,22 +6,18 @@ public class User {
     private String id;
     private String email;
     private String password;
-    private ArrayList<GroupSchedule> listGroupSchedule;
 
     public User(String id, String email, String password){
         this.id = id;
         this.email = email;
         this.password = password;
-        this.listGroupSchedule = new ArrayList<>();
     }
 
-    public void addGroupSchedule(GroupSchedule groupSchedule){
-        listGroupSchedule.add(groupSchedule);
+    public User(String email, String password){
+        this.email = email;
+        this.password = password;
     }
 
-    public ArrayList<GroupSchedule> getListGroupSchedule(){
-        return listGroupSchedule;
-    }
 
     public String getId(){
         return id;

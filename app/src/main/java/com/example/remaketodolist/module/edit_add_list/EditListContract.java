@@ -14,7 +14,7 @@ public interface EditListContract {
     }
 
     interface Presenter extends BasePresenter{
-        void saveData(String title, String description);
+        void saveData(Schedule schedule);
         void loadData(String id);
     }
 }

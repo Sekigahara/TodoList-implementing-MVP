@@ -10,7 +10,7 @@ import android.widget.EditText;
 
 import com.example.remaketodolist.R;
 import com.example.remaketodolist.base.BaseFragment;
-import com.example.remaketodolist.module.dashboard.DashboardActivity;
+import com.example.remaketodolist.module.list.ListActivity;
 
 public class LoginFragment extends BaseFragment<LoginActivity, LoginContract.Presenter> implements LoginContract.View {
     EditText etEmail;
@@ -24,7 +24,7 @@ public class LoginFragment extends BaseFragment<LoginActivity, LoginContract.Pre
     public android.view.View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         super.onCreateView(inflater, container, savedInstanceState);
         fragmentView = inflater.inflate(R.layout.fragment_login, container, false);
-        mPresenter = new LoginPresenter(this);
+        mPresenter = new LoginPresenter(this, getActivity());
         mPresenter.start();
 
         etEmail = fragmentView.findViewById(R.id.etEmail);
@@ -52,7 +52,7 @@ public class LoginFragment extends BaseFragment<LoginActivity, LoginContract.Pre
     }
 
     public void redirectToProfile(){
-        Intent intent = new Intent(activity, DashboardActivity.class);
+        Intent intent = new Intent(activity, ListActivity.class);
         startActivity(intent);
         activity.finish();
     }

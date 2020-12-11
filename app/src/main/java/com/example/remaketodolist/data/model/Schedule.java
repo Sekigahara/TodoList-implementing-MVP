@@ -13,6 +13,12 @@ public class Schedule {
         this.date = date;
     }
 
+    public Schedule(String title, String description, String date){
+        this.title = title;
+        this.description = description;
+        this.date = date;
+    }
+
     public String getId(){
         return id;
     }
