@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -29,12 +31,27 @@ public class RecycleViewAdapterList extends RecyclerView.Adapter<RecycleViewAdap
         TextView tvDescription;
         TextView tvDate;
         Button btDelete;
+        CheckBox cbIsDone;
         public MyViewHolder(final View itemView, final TableHandler tableHandler, final Activity activity){
             super(itemView);
             tvDate = (TextView) itemView.findViewById(R.id.tvDate);
             tvTitle = (TextView) itemView.findViewById(R.id.tvTitleList);
             tvDescription = (TextView) itemView.findViewById(R.id.tvDescriptionList);
             btDelete = (Button) itemView.findViewById(R.id.btDelete);
+            cbIsDone = (CheckBox) itemView.findViewById(R.id.cbIsDone);
+
+            cbIsDone.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if(isChecked == true) {
+                        mDataset.get(getAdapterPosition()).setIsDone(1);
+                    }
+                    else {
+                        mDataset.get(getAdapterPosition()).setIsDone(0);
+                    }
+                    tableHandler.update(mDataset.get(getAdapterPosition()));
+                }
+            });
 
             btDelete.setOnClickListener(new View.OnClickListener(){
                 @Override
@@ -42,6 +59,7 @@ public class RecycleViewAdapterList extends RecyclerView.Adapter<RecycleViewAdap
                     tableHandler.delete(getAdapterPosition());
                     Intent intent = new Intent(activity, ListActivity.class);
                     activity.startActivity(intent);
+                    activity.finish();
                 }
             });
             itemView.setOnClickListener(this);
@@ -70,6 +88,12 @@ public class RecycleViewAdapterList extends RecyclerView.Adapter<RecycleViewAdap
         holder.tvTitle.setText(mDataset.get(position).getTitle());
         holder.tvDescription.setText(mDataset.get(position).getDescription());
         holder.tvDate.setText(mDataset.get(position).getDate());
+
+        Integer isDone = mDataset.get(position).getIsDone();
+        if(isDone == 0)
+            holder.cbIsDone.setChecked(false);
+        else
+            holder.cbIsDone.setChecked(true);
     }
 
     public int getItemCount(){

@@ -25,6 +25,7 @@ public class ScheduleTableHandler implements TableHandler<Schedule>{
         values.put(DatabaseContract.FeedTask.COLUMN_DESCRIPTION, schedule.getDescription());
         values.put(DatabaseContract.FeedTask.COLUMN_TITLE, schedule.getTitle());
         values.put(DatabaseContract.FeedTask.COLUMN_DATE, schedule.getDate());
+        values.put(DatabaseContract.FeedTask.COLUMN_COMPLETE, schedule.getIsDone());
 
         long newRowId = db.insert(DatabaseContract.FeedTask.TABLE_NAME, null, values);
     }
@@ -39,7 +40,8 @@ public class ScheduleTableHandler implements TableHandler<Schedule>{
                 DatabaseContract.FeedTask._ID,
                 DatabaseContract.FeedTask.COLUMN_TITLE,
                 DatabaseContract.FeedTask.COLUMN_DESCRIPTION,
-                DatabaseContract.FeedTask.COLUMN_DATE
+                DatabaseContract.FeedTask.COLUMN_DATE,
+                DatabaseContract.FeedTask.COLUMN_COMPLETE
         };
 
         // Filter results WHERE "id" = id
@@ -68,7 +70,8 @@ public class ScheduleTableHandler implements TableHandler<Schedule>{
                         cursor.getColumnIndexOrThrow(DatabaseContract.FeedTask._ID))+"",
                 cursor.getString(1),//title
                 cursor.getString(2),//description
-                cursor.getString(3));//date
+                cursor.getString(3),//complete
+                cursor.getInt(4));//date
 
         return schedule;
     }
@@ -89,7 +92,8 @@ public class ScheduleTableHandler implements TableHandler<Schedule>{
                                 cursor.getColumnIndexOrThrow(DatabaseContract.FeedTask._ID))+"",
                         cursor.getString(1),//title
                         cursor.getString(2),//description
-                        cursor.getString(3));//date
+                        cursor.getString(3),//complete
+                        cursor.getInt(3));//date
 
                 taskList.add(schedule);
             } while (cursor.moveToNext());
@@ -108,6 +112,7 @@ public class ScheduleTableHandler implements TableHandler<Schedule>{
         values.put(DatabaseContract.FeedTask.COLUMN_TITLE, schedule.getTitle());
         values.put(DatabaseContract.FeedTask.COLUMN_DESCRIPTION, schedule.getDescription());
         values.put(DatabaseContract.FeedTask.COLUMN_DATE, schedule.getDate());
+        values.put(DatabaseContract.FeedTask.COLUMN_COMPLETE, schedule.getIsDone());
 
         // Which row to update, based on the title
         String selection = DatabaseContract.FeedTask._ID + " LIKE ?";

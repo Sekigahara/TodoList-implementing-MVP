@@ -4,7 +4,29 @@ public class Schedule {
     private String id;
     private String title;
     private String description;
+    private Integer isDone = 0;
     private String date;
+
+    public Schedule(String id, String title, String description, String date, Integer isDone){
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.isDone = isDone;
+        this.date = date;
+    }
+
+    public Schedule(String title, String description, String date, Integer isDone){
+        this.title = title;
+        this.description = description;
+        this.isDone = isDone;
+        this.date = date;
+    }
+
+    public Schedule(String title, String description, String date){
+        this.title = title;
+        this.description = description;
+        this.date = date;
+    }
 
     public Schedule(String id, String title, String description, String date){
         this.id = id;
@@ -13,10 +35,12 @@ public class Schedule {
         this.date = date;
     }
 
-    public Schedule(String title, String description, String date){
-        this.title = title;
-        this.description = description;
-        this.date = date;
+    public Integer getIsDone(){
+        return isDone;
+    }
+
+    public void setIsDone(Integer isDone){
+        this.isDone = isDone;
     }
 
     public String getId(){

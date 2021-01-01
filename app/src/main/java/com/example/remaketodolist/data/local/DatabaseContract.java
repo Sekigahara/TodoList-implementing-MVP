@@ -13,5 +13,6 @@ public final class DatabaseContract {
         public static final String COLUMN_TITLE = "title";
         public static final String COLUMN_DESCRIPTION = "description";
         public static final String COLUMN_DATE = "dates";
+        public static final String COLUMN_COMPLETE = "complete";
     }
 }

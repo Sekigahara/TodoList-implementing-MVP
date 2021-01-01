@@ -18,7 +18,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     DatabaseContract.FeedTask._ID + " INTEGER PRIMARY KEY," +
                     DatabaseContract.FeedTask.COLUMN_TITLE + " TEXT," +
                     DatabaseContract.FeedTask.COLUMN_DESCRIPTION + " TEXT," +
-                    DatabaseContract.FeedTask.COLUMN_DATE + " TEXT)";
+                    DatabaseContract.FeedTask.COLUMN_DATE + " TEXT," +
+                    DatabaseContract.FeedTask.COLUMN_COMPLETE + " INTEGER DEFAULT 0)"
+                    ;
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

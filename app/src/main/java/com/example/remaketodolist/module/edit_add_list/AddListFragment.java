@@ -44,7 +44,7 @@ public class AddListFragment extends BaseFragment<AddListActivity, AddListContra
                 String description = etDescription.getText().toString();
                 String date = etDate.getText().toString();
 
-                mPresenter.commitSchedule(new Schedule(title, description, date));
+                mPresenter.commitSchedule(new Schedule(title, description, date, 0));
             }
         });
 
