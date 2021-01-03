@@ -70,8 +70,8 @@ public class ScheduleTableHandler implements TableHandler<Schedule>{
                         cursor.getColumnIndexOrThrow(DatabaseContract.FeedTask._ID))+"",
                 cursor.getString(1),//title
                 cursor.getString(2),//description
-                cursor.getString(3),//complete
-                cursor.getInt(4));//date
+                cursor.getString(3),//date
+                cursor.getInt(4));//complete
 
         return schedule;
     }
@@ -93,7 +93,7 @@ public class ScheduleTableHandler implements TableHandler<Schedule>{
                         cursor.getString(1),//title
                         cursor.getString(2),//description
                         cursor.getString(3),//complete
-                        cursor.getInt(3));//date
+                        cursor.getInt(4));//date
 
                 taskList.add(schedule);
             } while (cursor.moveToNext());

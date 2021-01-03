@@ -18,16 +18,7 @@ public class ListActivity extends BaseFragmentHolderActivity{
         ivIcon.setVisibility(View.GONE);
 
         listFragment = new ListFragment();
+        listFragment.setBtBack(btBack);
         setCurrentFragment(listFragment, false);
-
-        btBack.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                UtilProvider.getUserSessionUtil().logout();
-                listFragment.gotoLogin();
-            }
-        });
-
-
     }
 }

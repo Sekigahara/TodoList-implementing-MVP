@@ -1,5 +1,6 @@
 package com.example.remaketodolist.base;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
@@ -8,6 +9,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.remaketodolist.R;
+import com.example.remaketodolist.module.login.LoginActivity;
+import com.example.remaketodolist.utils.provider.UtilProvider;
 
 
 public abstract class BaseFragmentHolderActivity extends BaseActivity {
@@ -30,13 +33,6 @@ public abstract class BaseFragmentHolderActivity extends BaseActivity {
         btBack = (ImageButton) findViewById(R.id.btBack);
         vMenuBarShadow = findViewById(R.id.vMenuBarShadow);
         rlActivityFragmentHolder = (RelativeLayout) findViewById(R.id.rlActivityFragmentHolder);
-
-        btBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view ) {
-                onBackPressed();
-            }
-        });
     }
 
     public void setTitle(String title) {

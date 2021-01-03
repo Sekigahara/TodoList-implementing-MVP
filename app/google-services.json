@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "176371227117",
+    "project_id": "to-do-list-83a9b",
+    "storage_bucket": "to-do-list-83a9b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:176371227117:android:eb688b24b635eb16ab6fe4",
+        "android_client_info": {
+          "package_name": "com.example.remaketodolist"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "176371227117-gbr2v3ri57f9r9djkicmm1219c3b6i86.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYJY9VslmT7Erz5gqS06qxwVOYT2NSbp8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "176371227117-gbr2v3ri57f9r9djkicmm1219c3b6i86.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

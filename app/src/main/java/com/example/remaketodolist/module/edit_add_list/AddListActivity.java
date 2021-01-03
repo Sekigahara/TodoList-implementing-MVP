@@ -11,7 +11,7 @@ public class AddListActivity extends BaseFragmentHolderActivity {
     protected void initializeFragment() {
         initializeView();
 
-        btBack.setVisibility(View.VISIBLE);
+        btBack.setVisibility(View.GONE);
         btOptionMenu.setVisibility(View.GONE);
         ivIcon.setVisibility(View.GONE);
 

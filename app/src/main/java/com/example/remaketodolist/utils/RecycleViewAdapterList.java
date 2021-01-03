@@ -1,22 +1,20 @@
 package com.example.remaketodolist.utils;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.remaketodolist.R;
 import com.example.remaketodolist.data.local.TableHandler;
 import com.example.remaketodolist.data.model.Schedule;
-import com.example.remaketodolist.module.list.ListActivity;
 
 import java.util.ArrayList;
 
@@ -40,28 +38,6 @@ public class RecycleViewAdapterList extends RecyclerView.Adapter<RecycleViewAdap
             btDelete = (Button) itemView.findViewById(R.id.btDelete);
             cbIsDone = (CheckBox) itemView.findViewById(R.id.cbIsDone);
 
-            cbIsDone.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if(isChecked == true) {
-                        mDataset.get(getAdapterPosition()).setIsDone(1);
-                    }
-                    else {
-                        mDataset.get(getAdapterPosition()).setIsDone(0);
-                    }
-                    tableHandler.update(mDataset.get(getAdapterPosition()));
-                }
-            });
-
-            btDelete.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View v) {
-                    tableHandler.delete(getAdapterPosition());
-                    Intent intent = new Intent(activity, ListActivity.class);
-                    activity.startActivity(intent);
-                    activity.finish();
-                }
-            });
             itemView.setOnClickListener(this);
         }
 
@@ -84,16 +60,49 @@ public class RecycleViewAdapterList extends RecyclerView.Adapter<RecycleViewAdap
         return myViewHolder;
     }
 
-    public void onBindViewHolder(RecycleViewAdapterList.MyViewHolder holder, int position){
-        holder.tvTitle.setText(mDataset.get(position).getTitle());
-        holder.tvDescription.setText(mDataset.get(position).getDescription());
-        holder.tvDate.setText(mDataset.get(position).getDate());
+    public void onBindViewHolder(RecycleViewAdapterList.MyViewHolder holder, final int position){
+        if(mDataset.get(position) != null){
+            holder.tvTitle.setText(mDataset.get(position).getTitle());
+            holder.tvDescription.setText(mDataset.get(position).getDescription());
+            holder.tvDate.setText(mDataset.get(position).getDate());
 
-        Integer isDone = mDataset.get(position).getIsDone();
-        if(isDone == 0)
-            holder.cbIsDone.setChecked(false);
-        else
-            holder.cbIsDone.setChecked(true);
+            Integer isDone = mDataset.get(position).getIsDone();
+            if(isDone == 1)
+                holder.cbIsDone.setChecked(true);
+            else if(isDone == 0)
+                holder.cbIsDone.setChecked(false);
+
+            holder.cbIsDone.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    final Schedule schedule = mDataset.get(position);
+                    if(isChecked) {
+                        schedule.setIsDone(1);
+                    }
+                    else {
+                        schedule.setIsDone(0);
+                    }
+
+                    ThreadUI.runOnUI(new Runnable() {
+                        @Override
+                        public void run() {
+                            mDataset.set(position, schedule);
+                            notifyItemChanged(position);
+                            tableHandler.update(schedule);
+                        }
+                    });
+                }
+            });
+
+            holder.btDelete.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    tableHandler.delete(Integer.parseInt(mDataset.get(position).getId()));
+                    mDataset.remove(position);
+                    notifyItemRemoved(position);
+                }
+            });
+        }
     }
 
     public int getItemCount(){

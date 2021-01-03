@@ -35,18 +35,8 @@ public class EditListFragment extends BaseFragment<EditListActivity, EditListCon
 
         btCreateUpdate.setText("Update");
 
-        btCreateUpdate.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                String title = etTitle.getText().toString();
-                String description = etDescription.getText().toString();
-                String date = etDate.getText().toString();
-                mPresenter.saveData(new Schedule(id, title, description, date));
-            }
-        });
-        setTitle("Edit Your List");
-
         mPresenter.loadData(this.id);
+        setTitle("Edit Your List");
 
         return fragmentView;
     }
@@ -64,10 +54,20 @@ public class EditListFragment extends BaseFragment<EditListActivity, EditListCon
     }
 
     @Override
-    public void showData(Schedule schedule) {
+    public void showData(final Schedule schedule) {
         this.etTitle.setText(schedule.getTitle());
         this.etDescription.setText(schedule.getDescription());
         this.etDate.setText(schedule.getDate());
+
+        btCreateUpdate.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                String title = etTitle.getText().toString();
+                String description = etDescription.getText().toString();
+                String date = etDate.getText().toString();
+                mPresenter.saveData(new Schedule(id, title, description, date, schedule.getIsDone()));
+            }
+        });
     }
 
     @Override

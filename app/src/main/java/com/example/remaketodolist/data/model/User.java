@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class User {
     private String id;
     private String email;
+    private String displayName;
     private String password;
 
     public User(String id, String email, String password){
@@ -18,6 +19,17 @@ public class User {
         this.password = password;
     }
 
+    public User(){
+
+    }
+
+    public void setDisplayName(String displayName){
+        this.displayName = displayName;
+    }
+
+    public String getDisplayName(){
+        return displayName;
+    }
 
     public String getId(){
         return id;
