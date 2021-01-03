@@ -74,7 +74,7 @@
                     android:textColor="?attr/colorForText" />
 
                 <Button
-                    android:id="@+id/button"
+                    android:id="@+id/btShare"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="share" />

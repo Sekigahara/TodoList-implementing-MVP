@@ -52,7 +52,7 @@ public class ListFragment extends BaseFragment<ListActivity, ListContract.Presen
     public android.view.View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         super.onCreateView(inflater, container, savedInstanceState);
         fragmentView = inflater.inflate(R.layout.fragment_list, container, false);
-        mPresenter = new ListPresenter(this, new ScheduleTableHandler(getActivity()));
+        mPresenter = new ListPresenter(this, new ScheduleTableHandler(activity));
         mPresenter.start();
 
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -158,10 +158,6 @@ public class ListFragment extends BaseFragment<ListActivity, ListContract.Presen
 
     public void setId(String id){
         this.id = id;
-    }
-
-    public void showData(Schedule schedule){
-
     }
 
     public void setPresenter(ListContract.Presenter presenter){

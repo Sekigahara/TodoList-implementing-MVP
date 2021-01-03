@@ -28,7 +28,7 @@ public class AddListFragment extends BaseFragment<AddListActivity, AddListContra
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         super.onCreateView(inflater, container, savedInstanceState);
         fragmentView = inflater.inflate(R.layout.fragment_add_update_list,container,false);
-        mPresenter = new AddListPresenter(this, new ScheduleSessionRepository(getActivity()), new ScheduleTableHandler(getActivity()));
+        mPresenter = new AddListPresenter(this, new ScheduleSessionRepository(activity), new ScheduleTableHandler(activity));
         mPresenter.start();
 
         etTitle = fragmentView.findViewById(R.id.etTitle);

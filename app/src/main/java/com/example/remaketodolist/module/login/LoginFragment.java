@@ -49,7 +49,7 @@ public class LoginFragment extends BaseFragment<LoginActivity, LoginContract.Pre
     public android.view.View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         super.onCreateView(inflater, container, savedInstanceState);
         fragmentView = inflater.inflate(R.layout.fragment_login, container, false);
-        mPresenter = new LoginPresenter(this, getActivity());
+        mPresenter = new LoginPresenter(this, activity);
         mPresenter.start();
 
         firebaseAuth = FirebaseAuth.getInstance();

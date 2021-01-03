@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">RemakeTodoList</string>
+    <string name="app_name">My Todolist</string>
     <string name="add_grouplist_title">Your todo list Title</string>
     <string name="update_groulist_title">Update list Title</string>
     <string name="add_grouplist_description">Insert a Description</string>

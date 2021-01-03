@@ -1,6 +1,7 @@
 package com.example.remaketodolist.utils;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.remaketodolist.R;
 import com.example.remaketodolist.data.local.TableHandler;
 import com.example.remaketodolist.data.model.Schedule;
+import com.example.remaketodolist.utils.provider.UtilProvider;
 
 import java.util.ArrayList;
 
@@ -29,13 +31,15 @@ public class RecycleViewAdapterList extends RecyclerView.Adapter<RecycleViewAdap
         TextView tvDescription;
         TextView tvDate;
         Button btDelete;
+        Button btShare;
         CheckBox cbIsDone;
-        public MyViewHolder(final View itemView, final TableHandler tableHandler, final Activity activity){
+        public MyViewHolder(final View itemView, final Activity activity){
             super(itemView);
             tvDate = (TextView) itemView.findViewById(R.id.tvDate);
             tvTitle = (TextView) itemView.findViewById(R.id.tvTitleList);
             tvDescription = (TextView) itemView.findViewById(R.id.tvDescriptionList);
             btDelete = (Button) itemView.findViewById(R.id.btDelete);
+            btShare = (Button) itemView.findViewById(R.id.btShare);
             cbIsDone = (CheckBox) itemView.findViewById(R.id.cbIsDone);
 
             itemView.setOnClickListener(this);
@@ -55,7 +59,7 @@ public class RecycleViewAdapterList extends RecyclerView.Adapter<RecycleViewAdap
 
     public RecycleViewAdapterList.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_list, parent, false);
-        RecycleViewAdapterList.MyViewHolder myViewHolder = new RecycleViewAdapterList.MyViewHolder(view, tableHandler, activity);
+        RecycleViewAdapterList.MyViewHolder myViewHolder = new RecycleViewAdapterList.MyViewHolder(view, activity);
 
         return myViewHolder;
     }
@@ -100,6 +104,39 @@ public class RecycleViewAdapterList extends RecyclerView.Adapter<RecycleViewAdap
                     tableHandler.delete(Integer.parseInt(mDataset.get(position).getId()));
                     mDataset.remove(position);
                     notifyItemRemoved(position);
+                }
+            });
+
+            holder.btShare.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    String email = UtilProvider.getUserSessionUtil().getSession().getEmail();
+                    String displayName = UtilProvider.getUserSessionUtil().getSession().getDisplayName();
+                    String date = mDataset.get(position).getDate();
+                    String title = mDataset.get(position).getTitle();
+                    String description = mDataset.get(position).getDescription();
+                    String doneTask = "";
+
+                    int isDone = mDataset.get(position).getIsDone();
+                    if(isDone == 0)
+                        doneTask = "Incomplete";
+                    else if(isDone == 1)
+                        doneTask = "Completed";
+
+                    String sentText = "Todo List by : " + displayName + "\n" +
+                                      "Account      : " + email       + "\n" +
+                                      "Date         : " + date        + "\n" +
+                                      "Activity     : " + title       + "\n" +
+                                      "Description  : " + description + "\n" +
+                                      "Status       : " + doneTask    + "\n" ;
+
+                    Intent intent = new Intent();
+                    intent.setAction(Intent.ACTION_SEND);
+                    intent.putExtra(Intent.EXTRA_TEXT, sentText);
+                    intent.setType("text/plain");
+
+                    Intent shareIntent = Intent.createChooser(intent, null);
+                    activity.startActivity(shareIntent);
                 }
             });
         }

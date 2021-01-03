@@ -25,7 +25,7 @@ public class EditListFragment extends BaseFragment<EditListActivity, EditListCon
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         super.onCreateView(inflater, container, savedInstanceState);
         fragmentView = inflater.inflate(R.layout.fragment_add_update_list,container,false);
-        mPresenter = new EditListPresenter(this, new ScheduleSessionRepository(getActivity()), new ScheduleTableHandler(getActivity()));
+        mPresenter = new EditListPresenter(this, new ScheduleSessionRepository(activity), new ScheduleTableHandler(activity));
         mPresenter.start();
 
         etTitle = fragmentView.findViewById(R.id.etTitle);
